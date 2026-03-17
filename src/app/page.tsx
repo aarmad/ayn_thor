@@ -8,9 +8,7 @@ import Navbar from '@/components/Navbar';
 
 export default function Home() {
   return (
-    <div className="w-full flex justify-center text-dark select-none overflow-x-hidden">
-      <div className="w-full max-w-[1600px] bg-container md:rounded-[3rem] relative overflow-hidden flex flex-col font-mono shadow-2xl border items-center transition-all duration-500">
-        
+    <>
         {/* ================= HERO SECTION ================= */}
         <section className="relative w-full h-[90vh] flex flex-col">
           <Navbar />
@@ -46,14 +44,14 @@ export default function Home() {
             {/* Center Product Image */}
             <motion.div 
                initial={{ opacity: 0, scale: 0.6, y: 50 }}
-               animate={{ opacity: 1, scale: 0.7, y: 0 }}
+               animate={{ opacity: 1, scale: 0.8, y: 0 }}
                transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-               className="relative w-full max-w-[350px] md:max-w-[600px] lg:max-w-[850px] xl:max-w-[1000px] aspect-square flex items-center justify-center pointer-events-none select-none z-20"
+               className="relative w-full max-w-[90vw] md:max-w-[600px] lg:max-w-[850px] xl:max-w-[1000px] flex items-center justify-center pointer-events-none select-none z-20"
             >
                <img 
                   src="/hero_transparent.png"
                   alt="Ayn Thor Device"
-                  className="w-full h-full object-contain filter drop-shadow-[0_65px_120px_rgba(0,0,0,0.12)] transform"
+                  className="w-full h-auto object-contain filter drop-shadow-[0_45px_100px_rgba(0,0,0,0.15)]"
                />
             </motion.div>
 
@@ -146,7 +144,7 @@ export default function Home() {
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true, margin: "-100px" }}
                transition={{ duration: 0.6 }}
-               className="flex-1 w-full relative h-[400px] md:h-[600px] bg-black/5 rounded-[3rem] overflow-hidden"
+               className="flex-1 w-full relative aspect-[4/3] md:aspect-square lg:aspect-video bg-black/5 rounded-[3rem] overflow-hidden"
              >
                 <img 
                   src="/thor_dual_screen.png" 
@@ -187,7 +185,7 @@ export default function Home() {
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true, margin: "-100px" }}
                transition={{ duration: 0.6 }}
-               className="flex-1 w-full relative h-[400px] md:h-[600px] bg-black/5 rounded-[3rem] overflow-hidden"
+               className="flex-1 w-full relative aspect-[4/3] md:aspect-square lg:aspect-video bg-black/5 rounded-[3rem] overflow-hidden"
              >
                 <img 
                   src="/thor_cooling_performance.png" 
@@ -440,16 +438,12 @@ export default function Home() {
                          <div className="w-8 h-8 rounded-full border-[1.5px] border-black/20 flex items-center justify-center group-hover:bg-brand group-hover:text-black group-hover:border-brand text-black/40 transition-all font-sans font-medium text-lg">+</div>
                       </div>
                     </div>
-                  ))}
+                   ))}
                 </div>
              </div>
            </section>
-
-          {/* Footer Subbed with the new component */}
-          <Footer />
-
         </div>
-      </div>
-    </div>
+        <Footer />
+    </>
   );
 }

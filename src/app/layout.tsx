@@ -36,8 +36,10 @@ export default function RootLayout({
           'antialiased text-dark bg-brand min-h-[100dvh] font-sans selection:bg-dark selection:text-primary'
         )}
       >
-        <main className="p-0 sm:p-2 lg:p-4 pt-1 sm:pt-2 lg:pt-4 min-h-screen flex flex-col max-w-[1700px] mx-auto">
-          {children}
+        <main className="p-0 sm:p-2 lg:p-4 pt-1 sm:pt-2 lg:pt-4 min-h-screen flex flex-col max-w-[1700px] mx-auto select-none overflow-x-hidden">
+          <div className="w-full flex-1 bg-container md:rounded-[4rem] relative overflow-hidden flex flex-col font-mono shadow-2xl border transition-all duration-500">
+            {children}
+          </div>
         </main>
       </body>
     </html>

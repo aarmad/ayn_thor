@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ShoppingBag, Plus, Minus, ArrowRight, Star, Cpu, Battery, Zap, Shield, ChevronDown } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Star, Cpu, Battery, Zap, Shield, ChevronDown } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import toast from 'react-hot-toast';
 import Navbar from '@/components/Navbar';
@@ -24,7 +24,8 @@ export default function ProductPage() {
 
   const colors = [
     { id: 'black', name: 'NOIR', hex: '#1C1C1E', imgIndex: 0 },
-    { id: 'white', name: 'BLANC', hex: '#F5F5F7', imgIndex: 1 }
+    { id: 'white', name: 'BLANC', hex: '#F5F5F7', imgIndex: 1 },
+    { id: 'violet', name: 'VIOLET', hex: '#6A4C93', imgIndex: 2 }
   ];
 
   const [selectedModel, setSelectedModel] = useState(models[1]);
@@ -33,8 +34,7 @@ export default function ProductPage() {
   const images = [
     "https://www.ayntec.com/cdn/shop/files/4fe40f089696834c4906303a743d01c5_d891fc5b-3473-449a-85c1-56663e291fcf_1200x1200.jpg",
     "https://www.ayntec.com/cdn/shop/files/548f6dfeb36e615cc62903b4eed35ece_1024x1024.jpg",
-    "https://www.ayntec.com/cdn/shop/files/996c0314d3c9f4f6a92e228ed4c8e264_a5d230ab-c3a7-49bd-940b-1c63a39c40ae_1024x1024.jpg",
-    "https://www.ayntec.com/cdn/shop/files/7fb0f10787593c662f277a0ee07e5967.jpg?v=1755943485"
+    "https://www.ayntec.com/cdn/shop/files/996c0314d3c9f4f6a92e228ed4c8e264_a5d230ab-c3a7-49bd-940b-1c63a39c40ae_1024x1024.jpg"
   ];
 
   const product = {
@@ -60,12 +60,11 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="w-full bg-primary font-mono text-dark flex flex-col items-center">
+    <>
       <Navbar />
 
-      {/* ================= MAIN SELECTION SECTION (100VH) ================= */}
-      <section className="w-full max-w-[1600px] h-[calc(100vh-80px)] md:px-8 pb-8 flex items-center justify-center">
-        <div className="w-full h-full bg-container md:rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row relative border-[1.5px] border-black/5">
+      {/* ================= MAIN SELECTION SECTION ================= */}
+      <section className="w-full lg:h-[calc(100vh-80px)] min-h-screen lg:min-h-0 flex flex-col lg:flex-row relative">
            
            {/* Cart Overlay Container */}
            <div className="absolute top-10 right-10 z-30 hidden md:block">
@@ -80,7 +79,7 @@ export default function ProductPage() {
            </div>
 
            {/* Left Side: Product Image Display */}
-           <div className="flex-1 h-[40vh] lg:h-full relative overflow-hidden bg-white/40 flex flex-col justify-center items-center">
+           <div className="flex-1 min-h-[50vh] py-12 lg:h-full lg:py-0 relative overflow-hidden bg-white/40 flex flex-col justify-center items-center">
               {/* Tech Marquee background */}
               <div className="absolute top-[20%] w-full overflow-hidden whitespace-nowrap opacity-[0.03] pointer-events-none rotate-[-5deg] scale-110">
                  <div className="inline-block animate-marquee text-9xl font-black uppercase text-black">
@@ -101,7 +100,7 @@ export default function ProductPage() {
                  <img 
                    src={images[activeImage]} 
                    alt={product.name}
-                   className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                   className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)] rounded-[3rem]"
                    draggable={false}
                  />
               </motion.div>
@@ -114,9 +113,9 @@ export default function ProductPage() {
                       onClick={() => setActiveImage(index)}
                       className={`shrink-0 flex items-center justify-center overflow-hidden transition-all ${
                         activeImage === index ? 'w-16 h-16 border-[2px] border-brand scale-110 shadow-xl bg-white' : 'w-14 h-14 border border-black/10 opacity-60 hover:opacity-100 bg-white/80'
-                      } rounded-2xl`}
+                      } rounded-[2rem]`}
                    >
-                     <img src={img} alt={`Thumb ${index}`} className="w-full h-full object-cover p-1" draggable={false} />
+                     <img src={img} alt={`Thumb ${index}`} className="w-full h-full object-cover p-1 rounded-[1.5rem]" draggable={false} />
                    </button>
                  ))}
               </div>
@@ -131,7 +130,6 @@ export default function ProductPage() {
               </button>
            </div>
 
-           {/* Right Side: Configuration & Details */}
            <div className="w-full lg:w-[45%] h-full flex flex-col lg:border-l-[1.5px] border-dashed border-black/20 bg-container relative overflow-hidden">
               <div className="flex-1 overflow-y-auto w-full p-8 md:p-12 lg:p-16 pb-40 noscrollbar flex flex-col text-dark">
                 
@@ -145,7 +143,7 @@ export default function ProductPage() {
                 </h1>
                 
                 <div className="flex items-center gap-4 mb-8">
-                  <span className="text-3xl font-black font-sans bg-black text-white px-4 py-1 rounded-xl">${product.price}</span>
+                  <span className="text-3xl font-black font-sans bg-black text-white px-4 py-1 rounded-xl">{product.price}€</span>
                   <span className="text-mono-xs font-bold text-black/40 border border-black/10 px-3 py-1 rounded-full uppercase">EN STOCK</span>
                 </div>
                 
@@ -161,15 +159,15 @@ export default function ProductPage() {
                        <button 
                          key={model.id}
                          onClick={() => setSelectedModel(model)}
-                         className={`p-6 rounded-2xl text-mono-xs font-bold transition-all border-[1.5px] flex flex-col gap-1 items-start relative ${
+                         className={`p-6 rounded-[2rem] text-mono-xs font-bold transition-all border-[1.5px] flex flex-col gap-1 items-start relative ${
                            selectedModel.id === model.id 
                              ? 'bg-black text-white border-black shadow-xl scale-[1.02]' 
                              : 'border-black/5 text-black/60 hover:border-black/20 bg-white/30'
                          }`}
                        >
                          <span className="text-sm font-black tracking-wider">{model.name}</span>
-                         <span className="opacity-50 text-[10px]">{model.processor}</span>
-                         <span className="opacity-50 text-[10px]">{model.ram} / {model.storage}</span>
+                         <span className="opacity-50 text-[10px] uppercase">{model.processor}</span>
+                         <span className="opacity-50 text-[10px] uppercase">{model.ram} / {model.storage}</span>
                          {selectedModel.id === model.id && <div className="absolute top-4 right-4 w-2 h-2 bg-brand rounded-full"></div>}
                        </button>
                      ))}
@@ -252,11 +250,10 @@ export default function ProductPage() {
               </div>
 
            </div>
-        </div>
       </section>
 
       {/* ================= EXTRA CONTENT SECTIONS (SCROLLABLE) ================= */}
-      <div ref={detailSectionRef} className="w-full max-w-[1200px] flex flex-col gap-24 py-32 px-6">
+      <div ref={detailSectionRef} className="w-full max-w-[1200px] flex flex-col gap-24 py-32 px-6 mx-auto">
         
         {/* Detail: Dual Screen Tech */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -265,27 +262,27 @@ export default function ProductPage() {
              whileInView={{ opacity: 1, x: 0 }}
              transition={{ duration: 0.8 }}
              viewport={{ once: true }}
-             className="relative rounded-[3rem] overflow-hidden bg-white p-12 border border-black/5 shadow-xl"
+             className="relative rounded-[5rem] overflow-hidden bg-white p-12 border border-black/5 shadow-xl"
            >
               <img 
                 src="https://droix.eu/wp-content/uploads/2025/08/AYN-THOR-BLACK-LISTING-DONE-02.jpg" 
                 alt="Dual Screen Tech" 
-                className="w-full h-auto object-cover transform rotate-3 hover:rotate-0 transition-transform duration-700"
+                className="w-full h-auto object-cover transform rotate-3 hover:rotate-0 transition-transform duration-700 rounded-[3rem]"
               />
            </motion.div>
 
-           <div className="flex flex-col gap-8">
+           <div className="flex flex-col gap-8 text-dark">
               <span className="text-brand font-black text-mono-xs tracking-widest uppercase">innovation exclusive</span>
               <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tight leading-none text-black">DEUX ÉCRANS. <br/>ZÉRO COMPROMIS.</h2>
               <p className="text-mono-sm font-bold text-black/60 leading-relaxed uppercase">
                 AYN THOR INTRODUIT LE TOUT PREMIER SYSTÈME DE DOUBLE ÉCRAN AMOLED SUR UNE CONSOLE PORTABLE ANDROID. L'ÉCRAN SUPÉRIEUR 120HZ OFFRE UNE FLUIDITÉ INCROYABLE POUR VOS JEUX, TANDIS QUE L'ÉCRAN INFÉRIEUR TACTILE 3.92" SERT DE CENTRE DE COMMANDE, DE CLAVIER OU D'INTERACTION SECONDAIRE.
               </p>
               <div className="grid grid-cols-2 gap-4 mt-4">
-                 <div className="p-6 bg-white border border-black/5 rounded-2xl flex flex-col gap-2">
+                 <div className="p-6 bg-white border border-black/5 rounded-[2rem] flex flex-col gap-2 shadow-sm">
                     <span className="text-2xl font-black font-sans">120HZ</span>
                     <span className="text-[10px] font-bold text-black/40 uppercase">Taux de Rafraîchissement</span>
                  </div>
-                 <div className="p-6 bg-white border border-black/5 rounded-2xl flex flex-col gap-2">
+                 <div className="p-6 bg-white border border-black/5 rounded-[2rem] flex flex-col gap-2 shadow-sm">
                     <span className="text-2xl font-black font-sans">100%</span>
                     <span className="text-[10px] font-bold text-black/40 uppercase">DCI-P3 Color Gamut</span>
                  </div>
@@ -294,7 +291,7 @@ export default function ProductPage() {
         </div>
 
         {/* Feature Grid: Performance & Engineering */}
-        <section className="w-full py-24 bg-black text-white rounded-[4rem] px-12 md:px-24 relative overflow-hidden">
+        <section className="w-full py-24 bg-black text-white rounded-[5rem] px-12 md:px-24 relative overflow-hidden">
            <div className="absolute top-0 right-0 w-[50%] h-full bg-brand/5 blur-[120px] rounded-full"></div>
            
            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-24">
@@ -325,12 +322,12 @@ export default function ProductPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
-                className="relative flex items-center justify-center p-8 bg-white/5 rounded-[3rem] border border-white/10"
+                className="relative flex items-center justify-center p-8 bg-white/5 rounded-[5rem] border border-white/10"
               >
                  <img 
                    src="https://www.ayntec.com/cdn/shop/files/996c0314d3c9f4f6a92e228ed4c8e264_a5d230ab-c3a7-49bd-940b-1c63a39c40ae_1024x1024.jpg" 
                    alt="Internal Hardware" 
-                   className="w-full h-auto filter grayscale invert brightness-200 opacity-60"
+                   className="w-full h-auto filter grayscale invert brightness-200 opacity-60 rounded-[3rem]"
                  />
                  {/* Floating Labels */}
                  <div className="absolute top-1/4 right-[5%] bg-brand text-black px-4 py-1 rounded-full text-[10px] font-black uppercase animate-pulse">active cooling</div>
@@ -340,29 +337,29 @@ export default function ProductPage() {
         </section>
 
         {/* Unboxing Section */}
-        <section className="w-full py-24 mb-12">
+        <section className="w-full py-24">
            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-8 text-dark">
                  <span className="text-brand font-black text-mono-xs tracking-widest uppercase">déballage</span>
                  <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tight leading-none text-black">DANS LA BOÎTE.</h2>
                  <p className="text-mono-sm font-bold text-black/60 leading-relaxed uppercase">
                     CHAQUE AYN THOR EST ACCOMPAGNÉE D'ACCESSOIRES PREMIUM CONÇUS POUR DURER.
                  </p>
-                 <ul className="flex flex-col gap-4 text-mono-sm font-black uppercase">
+                 <ul className="flex flex-col gap-4 text-mono-sm font-bold uppercase text-black/80">
                     <li className="flex items-center gap-3"><div className="w-6 h-px bg-brand"></div> CONSOLE AYN THOR</li>
                     <li className="flex items-center gap-3"><div className="w-6 h-px bg-brand"></div> CÂBLE USB-C TEXTILE (1.5M)</li>
                     <li className="flex items-center gap-3"><div className="w-6 h-px bg-brand"></div> GUIDE DE DÉMARRAGE RAPIDE</li>
                     <li className="flex items-center gap-3"><div className="w-6 h-px bg-brand"></div> PROTECTION D'ÉCRAN PRÉ-APPLIQUÉE</li>
                  </ul>
               </div>
-              <div className="bg-container rounded-[3rem] p-12 aspect-[4/3] flex items-center justify-center border border-black/5">
-                 <img src="/hero_transparent.png" alt="Box content" className="w-[60%] h-auto opacity-40 grayscale" />
+              <div className="bg-container rounded-[5rem] p-12 aspect-[4/3] flex items-center justify-center border border-black/5 shadow-inner">
+                 <img src="/hero_transparent.png" alt="Box content" className="w-[60%] h-auto opacity-40 grayscale rounded-[2rem]" />
               </div>
            </div>
         </section>
 
         {/* Ergonomics Section */}
-        <section className="w-full py-24 bg-black text-white rounded-[4rem] px-12 md:px-24 mb-12 relative overflow-hidden">
+        <section className="w-full py-24 bg-black text-white rounded-[5rem] px-12 md:px-24 mb-12 relative overflow-hidden">
            <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
            <div className="relative z-10 flex flex-col items-center text-center gap-8 mb-16">
               <span className="text-brand font-black text-mono-xs tracking-widest uppercase">ergonomie</span>
@@ -374,7 +371,7 @@ export default function ProductPage() {
                 { title: "GÂCHETTES ANALOGIQUES", desc: "Course fluide de 8mm pour un contrôle parfait dans les jeux de course." },
                 { title: "GRIP TEXTURÉ", desc: "Revêtement anti-dérapant pour des sessions de jeu prolongées sans fatigue." }
               ].map((item, i) => (
-                <div key={i} className="flex flex-col gap-4 p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition-all">
+                <div key={i} className="flex flex-col gap-4 p-8 border border-white/10 rounded-[2.5rem] hover:bg-white/5 transition-all bg-white/5">
                    <h4 className="font-black text-mono-sm uppercase text-brand">{item.title}</h4>
                    <p className="text-[10px] font-bold text-white/40 uppercase leading-relaxed">{item.desc}</p>
                 </div>
@@ -383,13 +380,13 @@ export default function ProductPage() {
         </section>
 
         {/* Comparison Table Mini */}
-        <section className="w-full flex flex-col gap-12 py-24">
-           <div className="text-center">
+        <section className="w-full flex flex-col gap-12 py-24 pb-40">
+           <div className="text-center text-dark">
               <h2 className="text-3xl font-black uppercase tracking-tight mb-4 text-black">SPÉCIFICATIONS TECHNIQUES</h2>
               <p className="text-mono-xs font-bold text-black/40 uppercase">DÉTAILS DU MATÉRIEL.</p>
            </div>
            
-           <div className="overflow-x-auto bg-white rounded-[2rem] border border-black/5 shadow-xl p-8">
+           <div className="overflow-x-auto bg-white rounded-[3rem] border border-black/5 shadow-xl p-10">
               <table className="w-full text-left font-mono border-collapse">
                  <thead>
                     <tr className="border-b-[1.5px] border-black/10">
@@ -399,20 +396,20 @@ export default function ProductPage() {
                        <th className="py-6 text-mono-xs font-black uppercase text-black">THOR MAX</th>
                     </tr>
                  </thead>
-                 <tbody className="text-mono-xs font-bold uppercase tracking-wider">
-                    <tr className="border-b border-black/5 text-black">
+                 <tbody className="text-mono-xs font-bold uppercase tracking-wider text-black">
+                    <tr className="border-b border-black/5">
                        <td className="py-6 text-black/40">PROCESSOR</td>
                        <td className="py-6">SD865</td>
                        <td className="py-6">SD 8 GEN 2</td>
                        <td className="py-6 font-black">SD 8 GEN 2 (OC)</td>
                     </tr>
-                    <tr className="border-b border-black/5 text-black">
+                    <tr className="border-b border-black/5">
                        <td className="py-6 text-black/40">RAM</td>
                        <td className="py-6">8GB LPDDR5</td>
                        <td className="py-6">8GB / 12GB</td>
                        <td className="py-6">16GB LPDDR5X</td>
                     </tr>
-                    <tr className="border-b border-black/5 text-black">
+                    <tr className="border-b border-black/5">
                        <td className="py-6 text-black/40">STORAGE</td>
                        <td className="py-6">128GB UFS 3.1</td>
                        <td className="py-6">128GB / 256GB</td>
@@ -427,11 +424,10 @@ export default function ProductPage() {
                  </tbody>
               </table>
            </div>
-        </section>
-
+         </section>
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 }

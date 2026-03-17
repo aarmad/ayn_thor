@@ -5,8 +5,15 @@ export default function Footer() {
     <footer className="w-full bg-container pt-16 pb-8 border-t-[1.5px] border-black/10 text-dark font-mono">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between gap-12">
         <div className="flex flex-col max-w-[300px]">
-          <Link href="/" className="text-3xl font-black tracking-tighter uppercase mb-6 block flex items-center gap-2 text-black">
-            A.T. <span className="text-mono-xs font-bold text-brand ml-2 bg-brand/10 border border-brand/20 px-2 rounded-full">/TECH</span>
+          <Link href="/" className="group flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-black/10 group-hover:scale-110 transition-transform">
+               <svg viewBox="0 0 100 100" className="w-5 h-5">
+                  <path d="M25 35 L50 30 L75 35 L75 45 L50 40 L25 45 Z" fill="#ff8a00" />
+                  <path d="M45 40 L55 40 L55 75 L45 75 Z" fill="white" />
+                  <path d="M35 70 L50 67 L65 70 L65 75 L50 72 L35 75 Z" fill="#ff8a00" />
+               </svg>
+            </div>
+            <span className="text-2xl font-black tracking-tighter uppercase text-black">AYN THOR</span>
           </Link>
           <p className="text-black/60 text-xs font-bold leading-relaxed mb-6">
             CONÇU POUR L'ÉLITE DU GAMING MOBILE. DOUBLE ÉCRAN, PUISSANCE MAXIMALE, POSSIBILITÉS INFINIES.

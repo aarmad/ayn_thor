@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AYN THOR - Console Portable Innovante à Double Écran
 
-## Getting Started
+Bienvenue sur le projet **AYN THOR**. Ce projet est une vitrine web e-commerce moderne et réactive construite avec [Next.js](https://nextjs.org/) pour présenter la console révolutionnaire AYN THOR, la première de sa catégorie à proposer un système AMOLED à double écran sous Android 13.
 
-First, run the development server:
+## 🚀 Fonctionnalités Principales
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Technologies Modernes :** Développé avec Next.js 14, React 18 et Tailwind CSS.
+- **Design Premium et Fluide :** Interface minimaliste aux bords arrondis ("galet"), mode sombre étendu et animations ultra-fluides grâce à [Framer Motion](https://www.framer.com/motion/).
+- **Expérience Utilisateur :** Mise en page responsive "sans scroll" optimisée pour le configurateur de produits.
+- **Performances Rapides :** Architecture React de pointe avec optimisation des images et composants dynamiques.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Installation et Lancement Local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pour démarrer ce projet sur votre machine locale :
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Clonez le dépôt :**
+    ```bash
+    git clone https://github.com/aarmad/ayn_thor.git
+    cd ayn_thor
+    ```
 
-## Learn More
+2.  **Installez les dépendances :**
+    ```bash
+    npm install
+    # ou
+    yarn install
+    # ou
+    pnpm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3.  **Lancez le serveur de développement :**
+    ```bash
+    npm run dev
+    # ou
+    yarn dev
+    # ou
+    pnpm dev
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4.  Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir le résultat. Le site se mettra à jour automatiquement au fur et à mesure que vous modifierez les fichiers.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Structure du Projet
 
-## Deploy on Vercel
+- `src/app/` : Contient les pages principales de l'application (Accueil, Produit, Modèles, Panier).
+- `src/components/` : Composants réutilisables d'UI globale (Navbar, Footer, Menu mobile).
+- `src/store/` : Gestion de l'état global (ex: le panier avec Zustand).
+- `public/` : Contient tous les actifs statiques, la typographie locale, les favicons et les images.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Déploiement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ce dépôt est conçu pour être facilement déployé sur **Netlify** ou **Vercel** de manière transparente. Assurez-vous simplement que le dossier de build (`.next`) est configuré dans les paramètres de publication de votre plateforme. Sur Netlify, la commande de build par défaut doit être `npm run build` et le dossier de publication doit être `.next`.
+
+---
+*Ce projet est une vitrine. Toute référence au nom et aux caractéristiques du produit "AYN THOR" est une réalisation à but illustratif.*
