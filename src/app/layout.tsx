@@ -17,9 +17,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Ayn Thor - Console Portable Double Écran',
   description: 'AYN Thor est une console portable de jeu exclusive à double écran avec processeur Snapdragon.',
-  icons: {
-    icon: '/favicon.svg',
-  },
 };
 
 export default function RootLayout({
