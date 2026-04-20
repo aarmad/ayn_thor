@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ayn-thor-backend
+    runtime: node
+    buildCommand: npm install && npm run build --workspace=apps/backend
+    startCommand: node apps/backend/dist/main
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: MONGODB_URI
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
