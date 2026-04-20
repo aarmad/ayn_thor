@@ -18,7 +18,8 @@ export default function CartPage() {
     setIsCheckingOut(true);
 
     try {
-      const response = await fetch('/api/checkout', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+      const response = await fetch(`${apiUrl}/checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: cart }),

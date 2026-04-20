@@ -1,13 +1,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { CartItem } from '@ayn-thor/shared';
 
-export interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
+export type { CartItem };
 
 interface CartStore {
   cart: CartItem[];

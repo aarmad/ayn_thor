@@ -1,35 +1,19 @@
 {
-  "name": "ayn_thor",
+  "name": "ayn-thor-monorepo",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "@stripe/stripe-js": "^8.9.0",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.36.0",
-    "lucide-react": "^0.577.0",
-    "mongoose": "^9.3.0",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-hot-toast": "^2.6.0",
-    "stripe": "^20.4.1",
-    "tailwind-merge": "^3.5.0",
-    "zustand": "^5.0.11"
+    "dev": "concurrently \"npm run dev --workspace=apps/frontend\" \"npm run dev --workspace=apps/backend\"",
+    "dev:frontend": "npm run dev --workspace=apps/frontend",
+    "dev:backend": "npm run dev --workspace=apps/backend",
+    "build": "npm run build --workspace=packages/shared && npm run build --workspace=apps/backend && npm run build --workspace=apps/frontend",
+    "lint": "npm run lint --workspaces"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "concurrently": "^9.0.0"
   }
 }
