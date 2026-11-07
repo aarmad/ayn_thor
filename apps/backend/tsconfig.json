@@ -10,6 +10,7 @@
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "paths": {
       "@ayn-thor/shared": ["../../packages/shared/src/index.ts"]
     }
