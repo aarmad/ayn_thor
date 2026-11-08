@@ -41,12 +41,12 @@ export default function CartPage() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center bg-panel font-mono text-ink overflow-x-hidden">
+    <div className="w-full min-h-screen flex flex-col items-center bg-panel-2 font-mono text-ink overflow-x-hidden">
       <Navbar />
 
       <main className="w-full max-w-[1400px] flex-1 flex flex-col lg:flex-row gap-8 px-6 md:px-12 py-12">
         {/* Cart Items - Left */}
-        <div className="flex-1 bg-surface md:rounded-[2px] p-8 md:p-12 shadow-2xl border border-brand/10">
+        <div className="flex-1 bg-surface md:rounded-[32px] p-8 md:p-12 shadow-[10px_10px_0_#1F2BFF] border border-ink/10">
           
           <h1 className="text-4xl lg:text-5xl font-black uppercase tracking-tight text-ink mb-12">
             PANIER
@@ -58,7 +58,7 @@ export default function CartPage() {
               <p className="text-mono-sm mb-6 font-bold">VOTRE PANIER EST VIDE</p>
               <Link 
                 href="/product" 
-                className="px-8 py-4 rounded-[2px] bg-brand text-void font-bold uppercase tracking-wide hover:scale-105 active:scale-95 transition-all text-mono-xs shadow-md shadow-brand/20"
+                className="px-8 py-4 rounded-full bg-brand text-void font-bold uppercase tracking-wide hover:scale-105 active:scale-95 transition-all text-mono-xs shadow-md shadow-brand/20"
               >
                 CONTINUER VOS ACHATS
               </Link>
@@ -66,8 +66,8 @@ export default function CartPage() {
           ) : (
             <div className="flex flex-col gap-6">
               {cart.map((item) => (
-                <div key={item.id} className="flex flex-col md:flex-row items-center gap-6 bg-void/50 rounded-[2px] p-6 border border-brand/10 hover:border-brand/40 transition-colors">
-                  <div className="w-24 h-24 lg:w-32 lg:h-32 bg-void rounded-[2px] flex-shrink-0 flex items-center justify-center overflow-hidden p-2">
+                <div key={item.id} className="flex flex-col md:flex-row items-center gap-6 bg-panel/50 rounded-3xl p-6 border border-ink/10 hover:border-ink/20 transition-colors">
+                  <div className="w-24 h-24 lg:w-32 lg:h-32 bg-panel rounded-2xl flex-shrink-0 flex items-center justify-center overflow-hidden p-2">
                      <img src={item.image} alt={item.name} className="w-full h-full object-contain filter drop-shadow-md" draggable={false} />
                   </div>
                   
@@ -76,17 +76,17 @@ export default function CartPage() {
                     <p className="text-ink/60 font-bold mb-4 font-sans">${item.price}</p>
                     
                     <div className="flex items-center justify-center md:justify-start gap-4">
-                      <div className="flex items-center bg-void border border-brand/20 rounded-[2px] h-10">
+                      <div className="flex items-center bg-panel border border-ink/14 rounded-full h-10">
                         <button 
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="w-10 h-10 flex items-center justify-center hover:bg-brand/5 rounded-l-full transition-colors"
+                          className="w-10 h-10 flex items-center justify-center hover:bg-ink/5 rounded-l-full transition-colors"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
                         <span className="w-8 text-center text-sm font-bold font-sans">{item.quantity}</span>
                         <button 
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="w-10 h-10 flex items-center justify-center hover:bg-brand/5 rounded-r-full transition-colors"
+                          className="w-10 h-10 flex items-center justify-center hover:bg-ink/5 rounded-r-full transition-colors"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -98,7 +98,7 @@ export default function CartPage() {
                     <p className="font-bold text-xl font-sans text-ink">${(item.price * item.quantity).toFixed(2)}</p>
                     <button 
                       onClick={() => removeFromCart(item.id)}
-                      className="w-10 h-10 flex items-center justify-center rounded-[2px] text-ink hover:bg-brand hover:text-void transition-colors bg-void shadow-sm border-[1.5px] border-brand/20 hover:border-brand/60"
+                      className="w-10 h-10 flex items-center justify-center rounded-full text-ink hover:bg-mint hover:text-void transition-colors bg-panel shadow-sm border-[1.5px] border-ink/14 hover:border-ink/50"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -111,23 +111,23 @@ export default function CartPage() {
 
         {/* Summary - Right */}
         <div className="w-full lg:w-[400px] flex flex-col gap-6">
-          <div className="bg-surface md:rounded-[2px] p-10 shadow-2xl border border-brand/10 h-fit sticky top-12">
+          <div className="bg-surface md:rounded-[32px] p-10 shadow-[10px_10px_0_#1F2BFF] border border-ink/10 h-fit sticky top-12">
             <h2 className="text-2xl font-black uppercase tracking-tight mb-12 text-ink">
               RÉCAPITULATIF
             </h2>
             
             <div className="flex flex-col gap-6 mb-12 text-mono-sm text-ink">
-              <div className="flex justify-between items-center border-b border-brand/20 pb-4">
+              <div className="flex justify-between items-center border-b border-ink/14 pb-4">
                 <span className="opacity-60">SOUS-TOTAL</span>
                 <span className="font-bold font-sans">${getCartTotal().toFixed(2)}</span>
               </div>
-              <div className="flex justify-between items-center border-b border-brand/20 pb-4">
+              <div className="flex justify-between items-center border-b border-ink/14 pb-4">
                 <span className="opacity-60">LIVRAISON</span>
                 <span className="font-bold text-brand">GRATUITE</span>
               </div>
             </div>
             
-            <div className="border-t-[1.5px] border-brand/60 pt-6 mb-12 flex justify-between items-center text-xl font-black">
+            <div className="border-t-[1.5px] border-ink/50 pt-6 mb-12 flex justify-between items-center text-xl font-black">
               <span>TOTAL</span>
               <span className="text-3xl font-sans">${getCartTotal().toFixed(2)}</span>
             </div>
@@ -135,7 +135,7 @@ export default function CartPage() {
             <button 
               onClick={handleCheckout}
               disabled={cart.length === 0 || isCheckingOut}
-              className="w-full py-5 rounded-[2px] bg-brand text-void font-bold uppercase tracking-wider text-mono-xs hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 disabled:opacity-50 disabled:pointer-events-none group shadow-lg shadow-brand/20"
+              className="w-full py-5 rounded-full bg-brand text-void font-bold uppercase tracking-wider text-mono-xs hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-4 disabled:opacity-50 disabled:pointer-events-none group shadow-lg shadow-brand/20"
             >
               {isCheckingOut ? (
                 <span className="animate-pulse">TRAITEMENT...</span>

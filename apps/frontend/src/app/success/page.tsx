@@ -16,7 +16,7 @@ export default function SuccessPage() {
   }, [clearCart]);
 
   return (
-    <div className="w-full min-h-screen bg-panel font-mono text-ink flex flex-col items-center">
+    <div className="w-full min-h-screen bg-panel-2 font-mono text-ink flex flex-col items-center">
       <Navbar />
       
       <main className="flex-1 w-full flex items-center justify-center p-6 md:p-12">
@@ -24,7 +24,7 @@ export default function SuccessPage() {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full max-w-2xl bg-surface rounded-[2px] p-10 md:p-20 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden border-[1.5px] border-brand/10"
+          className="w-full max-w-2xl bg-surface rounded-[32px] p-10 md:p-20 flex flex-col items-center justify-center text-center shadow-[10px_10px_0_#1F2BFF] relative overflow-hidden border-[1.5px] border-ink/10"
         >
           {/* Background decorations */}
           <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand via-transparent to-transparent"></div>
@@ -33,7 +33,7 @@ export default function SuccessPage() {
              initial={{ scale: 0 }}
              animate={{ scale: 1 }}
              transition={{ delay: 0.2, type: 'spring', stiffness: 200, damping: 15 }}
-             className="w-24 h-24 rounded-[2px] bg-brand flex items-center justify-center mb-8 text-void shadow-xl relative z-10"
+             className="w-24 h-24 rounded-full bg-brand flex items-center justify-center mb-8 text-void shadow-[8px_8px_0_#7FF0D8] relative z-10"
           >
             <CheckCircle className="w-12 h-12" />
           </motion.div>
@@ -49,14 +49,14 @@ export default function SuccessPage() {
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center relative z-10">
             <Link 
                href="/"
-               className="w-full sm:w-auto px-10 py-5 rounded-[2px] border-[1.5px] border-brand/40 text-ink font-bold uppercase tracking-widest hover:bg-brand hover:text-void transition-all flex items-center justify-center gap-2 group text-mono-xs"
+               className="w-full sm:w-auto px-10 py-5 rounded-full border-[1.5px] border-ink/20 text-ink font-bold uppercase tracking-widest hover:bg-mint hover:text-void transition-all flex items-center justify-center gap-2 group text-mono-xs"
             >
                <Home className="w-4 h-4" />
                ACCUEIL
             </Link>
             <Link 
                href="/product"
-               className="w-full sm:w-auto px-10 py-5 rounded-[2px] bg-brand text-void font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group shadow-xl text-mono-xs shadow-brand/20"
+               className="w-full sm:w-auto px-10 py-5 rounded-full bg-brand text-void font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 group shadow-[8px_8px_0_#7FF0D8] text-mono-xs shadow-brand/20"
             >
                CONTINUER
                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 
 export default function NouveautesPage() {
   return (
-    <div className="w-full min-h-screen bg-panel font-mono text-ink flex flex-col justify-between">
+    <div className="w-full min-h-screen bg-panel-2 font-mono text-ink flex flex-col justify-between">
       <Navbar />
       
       <main className="flex-1 w-full max-w-[1200px] mx-auto px-6 py-24">
@@ -18,8 +18,8 @@ export default function NouveautesPage() {
             { date: "02 FÉV 2026", title: "NOUVEAUX COLORIS PRO ET MAX", text: "Les précommandes de la nouvelle série Titanium sont officiellement ouvertes pour le batch 5 sur toutes les versions PRO et MAX." },
             { date: "15 JAN 2026", title: "UPDATE MAPPING ECRAN", text: "Mise à jour majeure pour le mapping des commandes tactiles sur l'écran inférieur vers l'écran principal. La communauté l'a demandé, nous l'avons fait." }
           ].map((news, idx) => (
-            <article key={idx} className="bg-void border-[1.5px] border-brand/20 p-8 rounded-[2px] hover:border-brand transition-colors cursor-pointer group">
-              <span className="inline-block bg-brand/5 text-ink/60 font-bold px-3 py-1 rounded-[2px] text-mono-xs mb-4 border border-brand/20">{news.date}</span>
+            <article key={idx} className="bg-panel border-[1.5px] border-ink/14 p-8 rounded-3xl hover:border-brand transition-colors cursor-pointer group">
+              <span className="inline-block bg-ink/5 text-ink/60 font-bold px-3 py-1 rounded-md text-mono-xs mb-4 border border-ink/14">{news.date}</span>
               <h2 className="text-2xl font-black uppercase tracking-tight mb-4 group-hover:text-brand transition-colors">{news.title}</h2>
               <p className="text-mono-sm font-bold text-ink/70 leading-relaxed uppercase">{news.text}</p>
             </article>

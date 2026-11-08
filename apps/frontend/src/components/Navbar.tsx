@@ -1,41 +1,67 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useCartStore } from '@/store/useCartStore';
+
+const links = [
+  { href: '/info', label: 'Info' },
+  { href: '/nouveautes', label: 'Nouveautés', highlight: true },
+  { href: '/#features', label: 'Fonctionnalités' },
+  { href: '/models', label: 'Modèles' },
+  { href: '/product', label: 'Acheter' },
+];
 
 export default function Navbar() {
-  return (
-    <header className="relative z-50 w-full pt-4 md:pt-6 px-4 md:px-6 flex justify-center bg-transparent">
-      <nav className="flex flex-wrap md:flex-nowrap items-center gap-1.5 md:gap-3 bg-panel p-2 md:p-3 rounded-[2px] shadow-sm max-w-fit mx-auto border border-brand/10">
-        <Link href="/" className="group relative w-10 h-10 md:w-12 md:h-12 bg-panel rounded-[2px] flex items-center justify-center shrink-0 overflow-hidden transition-all hover:scale-110 active:scale-95 shadow-lg shadow-black/20">
-           {/* Animated Background Glow */}
-           <div className="absolute inset-0 bg-brand opacity-0 group-hover:opacity-20 transition-opacity blur-md"></div>
-           
-           {/* Stylized 'T' Hammer Logo */}
-           <svg viewBox="0 0 100 100" className="w-6 h-6 md:w-7 md:h-7 relative z-10 transition-transform duration-500 group-hover:rotate-[15deg]">
-              <path 
-                d="M25 35 L50 30 L75 35 L75 45 L50 40 L25 45 Z" 
-                fill="currentColor" 
-                className="text-brand"
-              />
-              <path 
-                d="M45 40 L55 40 L55 75 L45 75 Z" 
-                fill="currentColor" 
-                className="text-ink"
-              />
-              <path 
-                d="M35 70 L50 67 L65 70 L65 75 L50 72 L35 75 Z" 
-                fill="currentColor" 
-                className="text-brand"
-              />
-           </svg>
+  const cart = useCartStore((s) => s.cart);
+  // the cart is persisted in localStorage: only show the count after hydration
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const count = mounted ? cart.reduce((n, i) => n + i.quantity, 0) : 0;
 
-           {/* Outer Ring Border */}
-           <div className="absolute inset-0 rounded-[2px] border border-white/10 group-hover:border-brand/40 transition-colors"></div>
+  return (
+    <header className="sticky top-0 z-50 w-full px-6 py-3.5 bg-void/80 backdrop-blur-md border-b border-white/10">
+      <nav aria-label="Navigation principale" className="max-w-[1280px] mx-auto flex flex-wrap items-center justify-between gap-3">
+        <Link href="/" className="flex items-center gap-2.5 text-ink">
+          <span className="font-display gbg w-10 h-10 rounded-full text-void grid place-items-center font-black text-base">T</span>
+          <span className="font-display font-bold text-[15px] tracking-[0.02em]">AYN/THOR</span>
         </Link>
-        <Link href="/info" className="px-4 py-2 text-mono-xs font-bold hover:opacity-60 transition-opacity hidden sm:block">INFO</Link>
-        <Link href="/nouveautes" className="px-4 md:px-6 py-2 md:py-3 rounded-[2px] text-mono-xs font-bold text-ink bg-gradient-to-r from-accent to-brand transition-all hover:scale-105 active:scale-95">NOUVEAUTÉS</Link>
-        <Link href="/#features" className="px-4 md:px-6 py-2 md:py-3 rounded-[2px] text-mono-xs font-bold text-void bg-brand transition-all hover:scale-105 active:scale-95 shadow-md shadow-brand/20">FONCTIONNALITÉS</Link>
-        <Link href="/product" className="px-4 md:px-6 py-2 md:py-3 rounded-[2px] text-mono-xs font-bold text-ink bg-panel transition-all hover:scale-105 active:scale-95">ACHETER</Link>
-        <Link href="/models" className="px-6 py-2 md:py-3 rounded-[2px] text-mono-xs font-bold text-ink border-[1.5px] border-dashed border-brand/80 hover:bg-brand/5 transition-colors hidden xl:block">DÉCOUVREZ TOUS NOS MODÈLES</Link>
-        <Link href="/subscribe" className="px-6 py-2 md:py-3 rounded-[2px] text-mono-xs font-bold text-void bg-brand transition-all hover:scale-105 active:scale-95 hidden lg:block border-[1.5px] border-brand/60">S'ABONNER</Link>
+
+        <div className="flex flex-wrap gap-1.5 bg-panel border border-white/10 p-[5px] rounded-full">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`pill font-mono text-xs px-4 min-h-11 rounded-full flex items-center ${
+                l.highlight ? 'gbg text-void font-bold' : 'text-ink'
+              }`}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex gap-2 items-center">
+          <Link
+            href="/subscribe"
+            className="font-mono text-xs text-ink px-4 min-h-11 flex items-center rounded-full border-[1.5px] border-ink/50 hover:border-lime hover:text-lime"
+          >
+            S&apos;abonner
+          </Link>
+          <Link
+            href="/cart"
+            aria-label={`Panier, ${count} article(s)`}
+            className="relative w-11 h-11 rounded-full bg-brand text-void grid place-items-center hover:bg-mint transition-colors"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M6 7h12l-1 13H7L6 7z" />
+              <path d="M9 7a3 3 0 0 1 6 0" />
+            </svg>
+            <span className="font-mono absolute -top-1 -right-1 min-w-5 h-5 px-1 rounded-full bg-mint text-void text-[11px] font-bold grid place-items-center">
+              {count}
+            </span>
+          </Link>
+        </div>
       </nav>
     </header>
   );

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      <section className="relative w-full min-h-[100vh] flex flex-col bg-void">
+      <section className="relative w-full min-h-[100vh] flex flex-col bg-panel">
         <Navbar />
 
         <div className="flex-1 flex flex-col lg:flex-row items-center justify-between px-6 md:px-12 lg:px-24 py-16 gap-12 max-w-[1400px] mx-auto w-full">
@@ -32,20 +32,20 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
                 href="/product"
-                className="px-10 py-5 bg-brand text-void rounded-[2px] font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-mono-xs inline-block text-center"
+                className="px-10 py-5 gbg text-void rounded-full font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-mono-xs inline-block text-center"
               >
                 ACHETER MAINTENANT
               </Link>
               <Link
                 href="#details"
-                className="px-10 py-5 border-2 border-brand/60 text-ink rounded-[2px] font-bold uppercase tracking-widest hover:bg-brand hover:text-void transition-all text-mono-xs inline-block text-center"
+                className="px-10 py-5 border-2 border-ink/50 text-ink rounded-full font-bold uppercase tracking-widest hover:bg-mint hover:text-void transition-all text-mono-xs inline-block text-center"
               >
                 EN SAVOIR PLUS
               </Link>
             </div>
 
             {/* Quick Stats */}
-            <div className="flex gap-8 pt-8 border-t border-brand/20">
+            <div className="flex gap-8 pt-8 border-t border-ink/14">
               <div>
                 <div className="text-3xl font-black text-brand">6"</div>
                 <div className="text-mono-xs text-ink/50 font-bold">ÉCRAN PRINCIPAL</div>
@@ -89,7 +89,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="flex flex-col gap-8"
             >
-              <div className="relative aspect-[3/4] bg-void rounded-[2px] overflow-hidden shadow-lg border border-brand/10 flex items-center justify-center">
+              <div className="relative aspect-[3/4] bg-panel rounded-[28px] overflow-hidden shadow-lg border border-ink/10 flex items-center justify-center">
                 <img
                   src="/hero_transparent.png"
                   alt="Product Details"
@@ -100,7 +100,7 @@ export default function Home() {
               {/* Thumbnail Gallery */}
               <div className="flex gap-4 overflow-x-auto">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="w-20 h-20 bg-void rounded-[2px] border border-brand/20 flex-shrink-0 flex items-center justify-center cursor-pointer hover:border-brand transition-colors">
+                  <div key={i} className="w-20 h-20 bg-panel rounded-lg border border-ink/14 flex-shrink-0 flex items-center justify-center cursor-pointer hover:border-brand transition-colors">
                     <span className="text-mono-xs font-bold text-ink/40">{i}</span>
                   </div>
                 ))}
@@ -130,7 +130,7 @@ export default function Home() {
                   { icon: "🔋", title: "BATTERIE 6000 MAH", desc: "Autonomie extrême pour des sessions illimitées" },
                   { icon: "🎯", title: "JOYSTICKS HALL EFFECT", desc: "Anti-drift magnétique pour précision sans compromis" }
                 ].map((feature, i) => (
-                  <div key={i} className="flex gap-4 p-4 rounded-[2px] hover:bg-void/50 transition-colors">
+                  <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-panel/50 transition-colors">
                     <div className="text-3xl flex-shrink-0">{feature.icon}</div>
                     <div className="flex flex-col gap-1">
                       <h3 className="font-bold text-mono-sm text-ink">{feature.title}</h3>
@@ -141,13 +141,13 @@ export default function Home() {
               </div>
 
               {/* Price Variants */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-brand/20">
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-ink/14">
                 {[
                   { name: "BASE", price: "$349", specs: "8GB RAM / 128GB" },
                   { name: "PRO", price: "$549", specs: "12GB RAM / 256GB" },
                   { name: "MAX", price: "$749", specs: "16GB RAM / 512GB" }
                 ].map((variant, i) => (
-                  <div key={i} className="p-4 bg-void rounded-[2px] border border-brand/20 text-center">
+                  <div key={i} className="p-4 bg-panel rounded-xl border border-ink/14 text-center">
                     <div className="text-brand font-black text-sm mb-1">{variant.name}</div>
                     <div className="text-2xl font-black text-ink mb-2">{variant.price}</div>
                     <div className="text-mono-xs text-ink/60">{variant.specs}</div>
@@ -157,7 +157,7 @@ export default function Home() {
 
               <Link
                 href="/product"
-                className="px-8 py-5 bg-brand text-void rounded-[2px] font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-mono-sm text-center mt-4"
+                className="px-8 py-5 bg-brand text-void rounded-full font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-mono-sm text-center mt-4"
               >
                 AJOUTER AU PANIER
               </Link>
@@ -198,12 +198,12 @@ export default function Home() {
       </section>
 
       {/* ================= TESTIMONIALS SECTION ================= */}
-      <section className="w-full bg-void text-ink py-24 px-6 md:px-12 lg:px-24">
+      <section className="w-full bg-panel text-ink py-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">CE QUE NOS CLIENTS DISENT</h2>
             <p className="text-mono-sm text-ink/60 font-bold">DÉCOUVREZ LES RETOURS DE LA COMMUNAUTÉ AYN THOR</p>
-            <div className="mt-4 inline-block bg-panel text-ink px-6 py-3 rounded-[2px] font-bold text-mono-xs">
+            <div className="mt-4 inline-block bg-panel text-ink px-6 py-3 rounded-full font-bold text-mono-xs">
               ★★★★★ 4.9/5 - 127 AVIS
             </div>
           </div>
@@ -253,7 +253,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="bg-surface border border-brand/20 p-8 rounded-[2px] flex flex-col gap-4 hover:border-brand transition-colors"
+                className="bg-surface border border-ink/14 p-8 rounded-2xl flex flex-col gap-4 hover:border-brand transition-colors"
               >
                 <div className="flex text-brand gap-1">
                   {"★★★★★".split("").map((star, idx) => (
@@ -261,7 +261,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-mono-sm text-ink/70 flex-1">"{review.text}"</p>
-                <div className="border-t border-brand/20 pt-4 flex items-center justify-between">
+                <div className="border-t border-ink/14 pt-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="text-3xl">{review.avatar}</div>
                     <div>
@@ -291,7 +291,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col gap-6 p-8 bg-void rounded-[2px] border border-brand/10"
+              className="flex flex-col gap-6 p-8 bg-panel rounded-2xl border border-ink/10"
             >
               <div className="text-4xl">🎮</div>
               <div>
@@ -311,7 +311,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex flex-col gap-6 p-8 bg-void rounded-[2px] border border-brand/10"
+              className="flex flex-col gap-6 p-8 bg-panel rounded-2xl border border-ink/10"
             >
               <div className="text-4xl">⚡</div>
               <div>
@@ -331,7 +331,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col gap-6 p-8 bg-void rounded-[2px] border border-brand/10"
+              className="flex flex-col gap-6 p-8 bg-panel rounded-2xl border border-ink/10"
             >
               <div className="text-4xl">🔋</div>
               <div>
@@ -351,7 +351,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col gap-6 p-8 bg-void rounded-[2px] border border-brand/10"
+              className="flex flex-col gap-6 p-8 bg-panel rounded-2xl border border-ink/10"
             >
               <div className="text-4xl">🎯</div>
               <div>
@@ -369,7 +369,7 @@ export default function Home() {
       </section>
 
       {/* ================= FAQ SECTION ================= */}
-      <section className="w-full bg-void text-ink py-24 px-6 md:px-12 lg:px-24">
+      <section className="w-full bg-panel text-ink py-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-[900px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">QUESTIONS FRÉQUENTES</h2>
@@ -405,13 +405,13 @@ export default function Home() {
             ].map((faq, idx) => (
               <details
                 key={idx}
-                className="group bg-surface border border-brand/20 rounded-[2px] p-6 cursor-pointer hover:border-brand transition-colors"
+                className="group bg-surface border border-ink/14 rounded-xl p-6 cursor-pointer hover:border-brand transition-colors"
               >
                 <summary className="flex justify-between items-center font-bold text-mono-sm text-ink">
                   {faq.q}
                   <span className="text-xl group-open:rotate-45 transition-transform">+</span>
                 </summary>
-                <div className="mt-4 text-mono-sm text-ink/70 pt-4 border-t border-brand/20">
+                <div className="mt-4 text-mono-sm text-ink/70 pt-4 border-t border-ink/14">
                   {faq.a}
                 </div>
               </details>
@@ -439,13 +439,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link
                 href="/product"
-                className="px-12 py-6 bg-brand text-void rounded-[2px] font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-mono-sm"
+                className="px-12 py-6 bg-brand text-void rounded-full font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all text-mono-sm"
               >
                 ACHETER MAINTENANT
               </Link>
               <Link
                 href="/models"
-                className="px-12 py-6 border-2 border-brand text-brand rounded-[2px] font-bold uppercase tracking-widest hover:bg-brand hover:text-void transition-all text-mono-sm"
+                className="px-12 py-6 border-2 border-ink/50 text-ink rounded-full font-bold uppercase tracking-widest hover:bg-mint hover:text-void transition-all text-mono-sm"
               >
                 COMPARER LES MODÈLES
               </Link>

@@ -1,19 +1,30 @@
 @import "tailwindcss";
 
-/* ================= CYBERCORE THEME ================= */
+/* ================= AYN/THOR — DA holographique ================= */
 @theme {
-  --color-void: #05070a;      /* page background */
-  --color-surface: #0a0e14;   /* sections */
-  --color-panel: #101722;     /* cards, inverted blocks */
-  --color-ink: #d6f6ff;       /* main text */
-  --color-brand: #00f0ff;     /* neon cyan */
-  --color-brand-light: #7df9ff;
-  --color-accent: #ff2bd6;    /* neon magenta */
-  --color-acid: #b6ff00;      /* status / success */
+  --color-void: #0B0C10;      /* fond de page */
+  --color-surface: #0F1117;   /* sections, cartes hero */
+  --color-panel: #13151C;     /* cartes */
+  --color-panel-2: #1B1E28;   /* tuiles, pilules */
+  --color-ink: #EEF0F4;       /* texte principal */
+  --color-body: #D6D8E4;      /* paragraphes */
+  --color-muted: #A9AEC0;     /* labels */
+  --color-brand: #4FA8FF;     /* bleu */
+  --color-brand-light: #7FF0D8;
+  --color-deep: #1F2BFF;      /* ombres décalées */
+  --color-mint: #7FF0D8;
+  --color-lime: #E9FF4A;
+  --color-gold: #FFD24A;
+  --color-accent: #E9FF4A;
 
-  --font-sans: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-display: var(--font-orbitron), "Arial Black", sans-serif;
+  --font-display: var(--font-unbounded), sans-serif;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-4xl: 3rem;
 }
 
 @layer base {
@@ -29,53 +40,45 @@
 
   h1, h2, h3 {
     font-family: var(--font-display);
-    letter-spacing: 0.02em;
-  }
-
-  /* chromatic aberration on big titles */
-  h1 {
-    text-shadow:
-      2px 0 0 rgba(255, 43, 214, 0.7),
-      -2px 0 0 rgba(0, 240, 255, 0.7),
-      0 0 24px rgba(0, 240, 255, 0.25);
-  }
-
-  h2 {
-    text-shadow: 1px 0 0 rgba(255, 43, 214, 0.5), -1px 0 0 rgba(0, 240, 255, 0.5);
+    letter-spacing: -0.02em;
   }
 
   ::selection {
-    background-color: var(--color-accent);
+    background-color: var(--color-lime);
     color: var(--color-void);
   }
 
-  /* scrollbar */
-  * {
-    scrollbar-color: var(--color-brand) var(--color-void);
-    scrollbar-width: thin;
-  }
+  a { transition: color .15s; }
 
   input, textarea, select {
     background-color: var(--color-void);
     color: var(--color-ink);
   }
 
-  input:focus, textarea:focus, select:focus {
-    outline: 1px solid var(--color-brand);
-    box-shadow: 0 0 12px -2px var(--color-brand);
+  input:focus-visible, textarea:focus-visible, select:focus-visible,
+  button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+
+  * {
+    scrollbar-color: var(--color-brand) var(--color-void);
+    scrollbar-width: thin;
   }
 }
 
 @layer utilities {
+  .font-display { font-family: var(--font-display); }
+
   .dashed-border {
-    border: 1px dashed color-mix(in srgb, var(--color-brand) 50%, transparent);
+    border: 1px dashed rgba(238, 240, 244, 0.4);
   }
 
   .text-mono-xs {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     line-height: 1.5;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
@@ -83,83 +86,62 @@
     font-family: var(--font-mono);
     font-size: 0.75rem;
     line-height: 1.5;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+
+  /* holographic text */
+  .grad {
+    background-image: linear-gradient(100deg, #2B3BFF 0%, #4FA8FF 16%, #7FF0D8 32%, #E9FF4A 50%, #FFD24A 60%, #7FF0D8 76%, #2B3BFF 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: holo 9s linear infinite;
+  }
+
+  /* holographic fill */
+  .gbg {
+    background-image: linear-gradient(100deg, #4FA8FF 0%, #7FF0D8 38%, #E9FF4A 72%, #FFD24A 100%);
+  }
+
+  .stripes { background: repeating-linear-gradient(115deg, #2B3BFF 0 9px, #4FA8FF 9px 18px, #7FF0D8 18px 27px, #E9FF4A 27px 36px); }
+  .scan { background: repeating-linear-gradient(0deg, rgba(11, 12, 16, .5) 0 2px, transparent 2px 7px); }
+  .ht { background-image: radial-gradient(#4FA8FF 1.3px, transparent 1.6px); background-size: 9px 9px; }
+  .gr {
+    background-image: linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bp {
+    background-image: linear-gradient(rgba(11, 12, 16, .16) 1px, transparent 1px), linear-gradient(90deg, rgba(11, 12, 16, .16) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .barcode { background: repeating-linear-gradient(90deg, #EEF0F4 0 2px, transparent 2px 4px, #EEF0F4 4px 7px, transparent 7px 9px, #EEF0F4 9px 10px, transparent 10px 14px); }
+  .barcode-dark { background: repeating-linear-gradient(90deg, #0B0C10 0 2px, transparent 2px 4px, #0B0C10 4px 7px, transparent 7px 9px, #0B0C10 9px 10px, transparent 10px 14px); }
+
+  .bars { display: flex; gap: 8px; align-self: stretch; }
+  .bar {
+    display: block;
+    width: 16px;
+    border: 2px solid #EEF0F4;
+    border-radius: 3px;
+    background-image: linear-gradient(160deg, #2B3BFF, #4FA8FF 30%, #7FF0D8 50%, #E9FF4A 72%, #4FA8FF);
+  }
+
+  .pill { transition: background .15s, color .15s; }
+  .pill:hover { background: #7FF0D8 !important; color: #0B0C10 !important; }
+  .cta:hover { filter: brightness(1.08) saturate(1.1); }
+
+  .flink { color: #EEF0F4; text-decoration: none; border-bottom: 1px solid rgba(238, 240, 244, .25); }
+  .flink:hover { color: #E9FF4A; border-color: #E9FF4A; }
 }
 
-/* ---------- neon glows ---------- */
-.text-brand { text-shadow: 0 0 10px rgba(0, 240, 255, 0.55); }
-.text-accent { text-shadow: 0 0 10px rgba(255, 43, 214, 0.55); }
-.bg-brand { box-shadow: 0 0 22px -4px rgba(0, 240, 255, 0.7); }
-.hover\:bg-brand:hover { box-shadow: 0 0 22px -4px rgba(0, 240, 255, 0.7); }
-
-/* ---------- background grid + glow ---------- */
-.cyber-grid {
-  background-image:
-    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(255, 43, 214, 0.12), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 85% 100%, rgba(0, 240, 255, 0.12), transparent 70%),
-    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-  background-attachment: fixed;
+@media (max-width: 720px) {
+  .bars { display: none; }
 }
 
-/* CRT scanlines over everything */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.025) 0 1px,
-    transparent 1px 3px
-  );
-  mix-blend-mode: overlay;
-}
+@keyframes holo { to { background-position: 200% 0; } }
 
-/* ---------- main frame with cut corners ---------- */
-.cyber-frame {
-  --cut: 28px;
-  clip-path: polygon(
-    var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut)
-  );
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  box-shadow: inset 0 0 80px rgba(0, 240, 255, 0.05);
-}
-
-.cyber-frame > section,
-.cyber-frame section {
-  background-image: linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-  background-size: 100% 4px;
-}
-
-/* ---------- HUD top bar ---------- */
-.hud-bar {
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  border-bottom: none;
-  background: linear-gradient(90deg, rgba(0, 240, 255, 0.08), transparent 40%, rgba(255, 43, 214, 0.08));
-}
-
-.cursor-blink { animation: blink 1s steps(1) infinite; }
-
-@keyframes blink { 50% { opacity: 0; } }
-
-/* ---------- glitch on hover for headings ---------- */
-h1:hover { animation: glitch 0.35s steps(2) 2; }
-
-@keyframes glitch {
-  0%   { transform: translate(0); clip-path: inset(0 0 0 0); }
-  25%  { transform: translate(-2px, 1px); clip-path: inset(10% 0 55% 0); }
-  50%  { transform: translate(2px, -1px); clip-path: inset(45% 0 20% 0); }
-  75%  { transform: translate(-1px, 0); clip-path: inset(70% 0 5% 0); }
-  100% { transform: translate(0); clip-path: inset(0 0 0 0); }
-}
-
-/* ---------- marquee ---------- */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -171,5 +153,5 @@ h1:hover { animation: glitch 0.35s steps(2) 2; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-blink, .animate-marquee, h1:hover { animation: none; }
+  .grad, .animate-marquee { animation: none; }
 }
