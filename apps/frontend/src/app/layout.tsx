@@ -7,19 +7,16 @@ import { Toaster } from 'react-hot-toast';
 const display = Unbounded({
   variable: '--font-unbounded',
   subsets: ['latin'],
-  weight: ['500', '700', '900'],
 });
 
 const mono = JetBrains_Mono({
   variable: '--font-jetbrains',
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
 });
 
 const sans = Inter_Tight({
   variable: '--font-inter-tight',
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
 });
 
 export const metadata: Metadata = {
